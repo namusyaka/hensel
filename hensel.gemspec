@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Hensel::VERSION
   spec.authors       = ["namusyaka"]
   spec.email         = ["namusyaka@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Hensel makes it easy to build the breadcrumbs.}
+  spec.description   = spec.summary
+  spec.homepage      = "https://github.com/namusyaka/hensel"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
