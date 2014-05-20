@@ -1,4 +1,6 @@
 # Hensel
+
+[![Build Status](https://travis-ci.org/namusyaka/hensel.svg)](https://travis-ci.org/namusyaka/hensel)
   
 Hensel makes it easy to build the breadcrumbs.
 
