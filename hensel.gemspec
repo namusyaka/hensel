@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "nyan-cat-formatter"
   spec.add_development_dependency "rspec-html-matchers"
   spec.add_development_dependency "guard"
-  spec.add_development_dependency "guard"
   spec.add_development_dependency "guard-shell"
   spec.add_development_dependency "guard-rspec"
 end
