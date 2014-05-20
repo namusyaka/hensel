@@ -1,0 +1,43 @@
+require 'forwardable'
+require 'hensel/builder/node'
+
+module Hensel
+  class Builder
+    class Item < Node
+      extend Forwardable
+
+      attr_accessor :text, :url, :options
+      attr_accessor :_first, :_last, :renderer
+
+      def_delegators :@options, :[], :[]=
+
+      def initialize(text, url, **options)
+        @text    = h(text)
+        @url     = url
+        @options = options
+      end
+
+      def render
+        if renderer
+          instance_eval(&renderer)
+        else
+          node(:li, **options) do
+            if !Hensel.configuration.last_item_link? && item.last?
+              node(:span){ item.text }
+            else
+              node(:a, href: item.url){ item.text }
+            end
+          end
+        end
+      end
+
+      def first?
+        !!_first
+      end
+
+      def last?
+        !!_last
+      end
+    end
+  end
+end
