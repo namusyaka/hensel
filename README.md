@@ -47,6 +47,7 @@ Hensel.configure do |config|
   config.attr_wrapper   = "'"
   config.whitespace     = "  "
   config.parent_element = :ul
+  config.before_load    = nil
 end
 ```
 
@@ -188,6 +189,18 @@ It will be somthing below.
 ```
 
 **If `parent_element` is set to a name string, it will be used as a name of the parent element.**
+
+**If `before_load` is set to Proc, it will be evaluated within the context of the `Hensel::Builder`.**
+It will be something below.
+
+```ruby
+Hensel.configuration.before_load = proc { add("Home", "/") }
+builder = Hensel::Builder.new
+home = builder.items.first
+home.text #=> "Home"
+home.url #=> "/"
+```
+
 
 ### Builder
 

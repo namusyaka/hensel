@@ -13,7 +13,7 @@ module Hensel
     attr_boolean_accessor :indentation
     attr_boolean_accessor :last_item_link
 
-    attr_accessor :attr_wrapper, :whitespace, :parent_element, :richsnippet
+    attr_accessor :attr_wrapper, :whitespace, :parent_element, :richsnippet, :before_load
 
     def initialize
       @bootstrap      = false
@@ -24,6 +24,7 @@ module Hensel
       @attr_wrapper   = "'"
       @whitespace     = "  "
       @parent_element = :ul 
+      @before_load    = nil
     end
 
     def [](key)

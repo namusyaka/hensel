@@ -11,6 +11,7 @@ module Hensel
     def initialize(**options)
       @items   = []
       @options = options
+      instance_eval(&Hensel.configuration.before_load) if Hensel.configuration.before_load
     end
 
     # Adds an item to items
