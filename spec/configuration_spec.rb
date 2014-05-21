@@ -34,7 +34,7 @@ describe Hensel::Configuration do
       Hensel.configuration.before_load = proc{ add("Home", "/") }
     end
 
-    it "should be evaluated as an instance context of Hensel::Builder" do
+    it "should be evaluated within the context of `Hensel::Builder`" do
       builder = Hensel::Builder.new
       expect(builder.items.length).to eq(1)
     end

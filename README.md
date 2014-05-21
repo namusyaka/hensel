@@ -190,7 +190,7 @@ It will be somthing below.
 
 **If `parent_element` is set to a name string, it will be used as a name of the parent element.**
 
-**If `before_load` is set to Proc, it will be evaluated within the context of the `Hensel::Builder`.**
+**If `before_load` is set to Proc, it will be evaluated within the context of `Hensel::Builder`.**
 It will be something below.
 
 ```ruby
