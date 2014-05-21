@@ -291,9 +291,15 @@ end
 
 ### Helpers
 
-The helper is prepared for use in Sinatra and Padrino.
+The helper can be used in your web application.
 
-### with Sinatra
+#### Basic
+
+```ruby
+include Hensel::Helpers
+```
+
+#### with Sinatra
 
 ```ruby
 class Sample < Sinatra::Base
@@ -313,7 +319,7 @@ class Sample < Sinatra::Base
 end
 ```
 
-### with Padrino
+#### with Padrino
 
 ```ruby
 # config/boot.rb
@@ -331,6 +337,31 @@ class Sample < Padrino::Application
 
   get :index do
     breadcrumbs.add("home", ?/)
+    breadcrumbs.render
+  end
+end
+```
+
+### Sinatra/Padrino Helpers
+
+If you want to customize more, you should use SinatraHelpers.
+It can be used both in Sinatra and in Padrino.
+
+```ruby
+class Sample < Sinatra::Base
+  helpers Hensel::Helpers::SinatraHelpers
+  set :hensel, builder_options: { class: "this-is-parent-class-name" },
+               renderer: proc { node(:custom_element_name){ item.text }}
+
+  configure do
+    Hensel.configure do |config|
+      config.attr_wrapper = '"'
+      config.whitespace   = '  '
+    end
+  end
+
+  get "/" do
+    breadcrumbs.add("home", "/")
     breadcrumbs.render
   end
 end
