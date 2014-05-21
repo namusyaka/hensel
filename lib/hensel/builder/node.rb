@@ -31,9 +31,7 @@ module Hensel
           begin
             return self if self.instance_of?(Hensel::Builder::Item)
             ancestor = parent
-            while ancestor.instance_of?(Hensel::Builder::Node)
-              ancestor = ancestor.parent
-            end
+            ancestor = ancestor.parent while ancestor.instance_of?(Hensel::Builder::Node)
             ancestor
           end
       end
