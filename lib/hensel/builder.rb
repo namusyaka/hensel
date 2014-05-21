@@ -54,8 +54,13 @@ module Hensel
       !!@processed
     end
 
+    def item_filters
+      @item_filters ||= []
+    end
+
     private
 
+    # @!visibility private
     def map_items
       items_length = items.length.pred
       items.map.with_index do |item, index|
@@ -69,10 +74,6 @@ module Hensel
         item_filters.each{|filter| item.instance_eval(&filter) } unless item_filters.empty?
         yield item
       end
-    end
-
-    def item_filters
-      @item_filters ||= []
     end
 
     # @!visibility private
