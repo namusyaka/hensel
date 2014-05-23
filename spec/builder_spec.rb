@@ -37,6 +37,19 @@ describe Hensel::Builder do
         expect(builder.render).to have_tag(:li, class: "optional-class", id: "foo-id")
       end
     end
+
+    context "with one argument" do
+      it "returns an instance of Builder::Item" do
+        expect(builder.add("Index")).to be_an_instance_of(Hensel::Builder::Item)
+      end
+
+      it "adds an instance of Builder::Item to items" do
+        builder.add("Boom")
+        expect(builder.items.last).to be_an_instance_of(Hensel::Builder::Item)
+        expect(builder.items.last.text).to eq("Boom")
+        expect(builder.items.last.url).to be_nil
+      end
+    end
   end
 
   describe "#remove" do

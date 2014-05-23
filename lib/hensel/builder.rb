@@ -98,6 +98,8 @@ module Hensel
       when 1
         if (options = arguments.first) && options.instance_of?(Hash)
           [ options.delete(:text) || options.delete(:content), options.delete(:path) || options.delete(:url), options ]
+        elsif options.instance_of?(String)
+          [ options, nil, {} ]
         else
           raise ArgumentError
         end
