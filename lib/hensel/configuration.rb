@@ -13,18 +13,20 @@ module Hensel
     attr_boolean_accessor :indentation
     attr_boolean_accessor :last_item_link
 
-    attr_accessor :attr_wrapper, :whitespace, :parent_element, :richsnippet, :before_load
+    attr_accessor :attr_wrapper, :whitespace, :parent_element, :richsnippet, :before_load,
+                  :default_item_options
 
     def initialize
-      @bootstrap      = false
-      @escape_html    = true
-      @indentation    = true
-      @last_item_link = false
-      @richsnippet    = :microdata # [:microdata, :rdfa, :nil]
-      @attr_wrapper   = "'"
-      @whitespace     = "  "
-      @parent_element = :ul 
-      @before_load    = nil
+      @bootstrap            = false
+      @escape_html          = true
+      @indentation          = true
+      @last_item_link       = false
+      @richsnippet          = :microdata # [:microdata, :rdfa, :nil]
+      @attr_wrapper         = "'"
+      @whitespace           = "  "
+      @parent_element       = :ul 
+      @before_load          = nil
+      @default_item_options = {}
     end
 
     def [](key)

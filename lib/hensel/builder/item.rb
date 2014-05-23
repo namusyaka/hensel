@@ -14,7 +14,7 @@ module Hensel
       def initialize(text, url, **options)
         @text    = h(text)
         @url     = url
-        @options = options
+        @options = Hensel.configuration.default_item_options.merge(options)
       end
 
       def render

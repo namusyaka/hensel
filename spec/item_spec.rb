@@ -37,4 +37,20 @@ describe Hensel::Builder::Item do
       end
     end
   end
+
+  describe "default_item_options" do
+    before do
+      Hensel.configuration.default_item_options = { class: "default-item" }
+    end
+    let(:item) { Hensel::Builder::Item.new("index", "/", class: "custom-item") }
+    subject { item.render }
+
+    it "can set hash as default item options" do
+      should have_tag(:li, class: "default-item")
+    end
+
+    it "should overwrite the options" do
+      should have_tag(:li, class: "custom-item")
+    end
+  end
 end
