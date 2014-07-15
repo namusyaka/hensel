@@ -5,9 +5,9 @@ describe Hensel::Configuration do
   let(:variables){ configuration.instance_variables.map{|v| v[1..-1] } }
   describe ".attr_boolean_accessor" do
     it "can define an accessor and boolean methods" do
-      expect(configuration.respond_to?(:sample)).to be_false
+      expect(configuration.respond_to?(:sample)).to be_falsey
       Hensel::Configuration.attr_boolean_accessor :sample
-      expect(configuration.respond_to?(:sample)).to be_true
+      expect(configuration.respond_to?(:sample)).to be_truthy
     end
   end
 

@@ -10,7 +10,7 @@ describe Hensel::Builder::Item do
     end
     before(:each){ builder.add('\'&"<>', '/') }
     subject { builder.items.last.text }
-    it { should eq('&#39;&amp;&quot;&lt;&gt;') }
+    it { is_expected.to eq('&#39;&amp;&quot;&lt;&gt;') }
   end
 
   context "without escape_html" do
@@ -20,20 +20,20 @@ describe Hensel::Builder::Item do
     end
     before(:each){ builder.add('\'&"<>', '/') }
     subject { builder.items.last.text }
-    it { should eq('\'&"<>') }
+    it { is_expected.to eq('\'&"<>') }
   end
 
   describe "#render" do
     let(:item) { Hensel::Builder::Item.new("index", "/") }
     subject { item.render }
     context "basic usage" do
-      it { should have_tag(:li){ with_tag(:a, href: "/") } }
+      it { is_expected.to have_tag(:li){ with_tag(:a, href: "/") } }
     end
 
     context "with customized renderer" do
       it "can be set to renderer" do
         item.renderer = ->(this){ node(:custom, data: "sample"){ item.text } } 
-        should have_tag(:custom, text: "index", data: "sample")
+        is_expected.to have_tag(:custom, text: "index", data: "sample")
       end
     end
   end
@@ -46,11 +46,11 @@ describe Hensel::Builder::Item do
     subject { item.render }
 
     it "can set hash as default item options" do
-      should have_tag(:li, class: "default-item")
+      is_expected.to have_tag(:li, class: "default-item")
     end
 
     it "should overwrite the options" do
-      should have_tag(:li, class: "custom-item")
+      is_expected.to have_tag(:li, class: "custom-item")
     end
   end
 end

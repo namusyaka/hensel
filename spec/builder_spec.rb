@@ -58,7 +58,7 @@ describe Hensel::Builder do
         tested = builder.add("Tested", "/tested")
         builder.add("Sample", "/sample")
         builder.remove("Tested")
-        expect(builder.items.any?{|x| x.text == tested.text }).to be_false
+        expect(builder.items.any?{|x| x.text == tested.text }).to be_falsey
       end
     end
 
@@ -67,8 +67,8 @@ describe Hensel::Builder do
         tested = builder.add("Tested", "/tested")
         sample = builder.add("Sample", "/sample")
         builder.remove{|x| x.url == "/sample" }
-        expect(builder.items.any?{|x| x.text == tested.text }).to be_true
-        expect(builder.items.any?{|x| x.text == sample.text }).to be_false
+        expect(builder.items.any?{|x| x.text == tested.text }).to be_truthy
+        expect(builder.items.any?{|x| x.text == sample.text }).to be_falsey
       end
     end
   end
@@ -141,8 +141,8 @@ describe Hensel::Builder do
       before { Hensel.configuration.attr_wrapper = '"' }
       before(:each){ builder.add("Index", "/", class: "dummy-class") }
       subject { builder.render }
-      it { should_not match(/'/) }
-      it { should match(/"/) }
+      it { is_expected.not_to match(/'/) }
+      it { is_expected.to match(/"/) }
       after { Hensel.reset_configuration! }
     end
 
@@ -164,7 +164,7 @@ describe Hensel::Builder do
         FIXTURE
       }
       subject { builder.render }
-      it { should eq(fixture) }
+      it { is_expected.to eq(fixture) }
     end
   end
 

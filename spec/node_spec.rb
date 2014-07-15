@@ -12,12 +12,12 @@ describe Hensel::Builder::Node do
       subject { item.render }
       it "can build html correctly" do
         item.renderer = ->(this){ node(:div, class: "hey"){ "sample text" }}
-        should have_tag(:div, text: "sample text", class: "hey")
+        is_expected.to have_tag(:div, text: "sample text", class: "hey")
       end
 
       it "can build html correctly even when node is nested" do
         item.renderer = ->(this){ node(:div, class: "hey"){ node(:span){ "nested text" } }}
-        should have_tag(:div, class: "hey") do
+        is_expected.to have_tag(:div, class: "hey") do
           with_tag(:span, text: "nested text")
         end
       end
@@ -29,7 +29,7 @@ describe Hensel::Builder::Node do
             node(:span){ "one2" }
           end
         }
-        should have_tag(:div) do
+        is_expected.to have_tag(:div) do
           with_tag(:span, text: "one1")
           with_tag(:span, text: "one2")
         end
@@ -40,12 +40,12 @@ describe Hensel::Builder::Node do
       subject { item.render }
       it "can build html correctly" do
         item.renderer = ->(this){ node(:div, "sample text", class: "hey") }
-        should have_tag(:div, content: "sample text", class: "hey")
+        is_expected.to have_tag(:div, content: "sample text", class: "hey")
       end
 
       it "can build html correctly even when node is nested" do
         item.renderer = ->(this){ node(:div, class: "hey"){ node(:span, "nested text") }}
-        should have_tag(:div, class: "hey") do
+        is_expected.to have_tag(:div, class: "hey") do
           with_tag(:span, content: "nested text")
         end
       end
@@ -57,7 +57,7 @@ describe Hensel::Builder::Node do
             node(:span, "one2")
           end
         }
-        should have_tag(:div) do
+        is_expected.to have_tag(:div) do
           with_tag(:span, text: "one1")
           with_tag(:span, text: "one2")
         end
@@ -69,7 +69,7 @@ describe Hensel::Builder::Node do
     subject { item.render }
     it "can be referred from block" do
       item.renderer = ->(this){ node(:div, item.text) }
-      should have_tag(:div, text: "index")
+      is_expected.to have_tag(:div, text: "index")
     end
   end
 end
