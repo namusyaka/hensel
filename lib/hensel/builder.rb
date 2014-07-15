@@ -65,11 +65,11 @@ module Hensel
       items_length = items.length.pred
       items.map.with_index do |item, index|
         if index == items_length
-          item._last = true
+          item.is_last = true
         elsif index.zero?
-          item._first = true
+          item.is_first = true
         else
-          item._first = item._last = false
+          item.is_first = item.is_last = false
         end
         item_filters.each{|filter| item.instance_eval(&filter) } unless item_filters.empty?
         yield item

@@ -7,7 +7,7 @@ module Hensel
       extend Forwardable
 
       attr_accessor :text, :url, :options
-      attr_accessor :_first, :_last, :renderer
+      attr_accessor :is_first, :is_last, :renderer
 
       def_delegators :@options, :[], :[]=
 
@@ -32,11 +32,11 @@ module Hensel
       end
 
       def first?
-        !!_first
+        !!is_first
       end
 
       def last?
-        !!_last
+        !!is_last
       end
     end
   end
