@@ -39,15 +39,17 @@ require 'hensel'
     
 Hensel.configure do |config|
   # Default values
-  config.bootstrap      = false
-  config.escape_html    = true
-  config.indentation    = true
-  config.last_item_link = false
-  config.richsnippet    = :microdata
-  config.attr_wrapper   = "'"
-  config.whitespace     = "  "
-  config.parent_element = :ul
-  config.before_load    = nil
+  config.bootstrap            = false
+  config.escape_html          = true
+  config.indentation          = true
+  config.last_item_link       = false
+  config.richsnippet          = :microdata
+  config.attr_wrapper         = "'"
+  config.whitespace           = "  "
+  config.parent_element       = :ul
+  config.before_load          = nil
+  config.default_item_options = {}
+  config.parent_attributes    = {}
 end
 ```
 
@@ -201,6 +203,22 @@ home.text #=> "Home"
 home.url #=> "/"
 ```
 
+**If Hash is set to `default_item_options`, all items will use it as options.
+
+```ruby
+Hensel.configuration.default_item_options = { class: "tested" }
+builder = Hensel::Builder.new
+builder.add("Home", "/")
+builder.items.first.render #=> "<li class='tested'><a href='/'>Home</a></li>"
+```
+
+**If Hash is set to `parent_attributes`, the parent element will include it as attributes.
+
+```ruby
+Hensel.configuration.parent_attributes = { class: "parent-tested" }
+builder = Hensel::Builder.new
+builder.render #=> "<ul class='parent-tested'></ul>"
+```
 
 ### Builder
 
