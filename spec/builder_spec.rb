@@ -212,4 +212,16 @@ describe Hensel::Builder do
       end
     end
   end
+
+  describe "configure attributes of the parent element" do
+    before do
+      Hensel.configuration.parent_attributes = { class: "breadcrumbs", style: "border:0" }
+      builder.add("Index", "/")
+    end
+    subject{ builder.render }
+
+    it "can set attributes of the parent element" do
+      expect(subject).to have_tag(:ul, with: { class: "breadcrumbs", style: "border:0" })
+    end
+  end
 end

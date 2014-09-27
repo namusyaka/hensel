@@ -10,7 +10,7 @@ module Hensel
 
     def initialize(**options)
       @items   = []
-      @options = options
+      @options = options.empty? ? Hensel.configuration.parent_attributes.dup : options
       instance_eval(&Hensel.configuration.before_load) if Hensel.configuration.before_load
     end
 

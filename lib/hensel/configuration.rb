@@ -14,7 +14,7 @@ module Hensel
     attr_boolean_accessor :last_item_link
 
     attr_accessor :attr_wrapper, :whitespace, :parent_element, :richsnippet, :before_load,
-                  :default_item_options
+                  :default_item_options, :parent_attributes
 
     def initialize
       @bootstrap            = false
@@ -27,6 +27,7 @@ module Hensel
       @parent_element       = :ul 
       @before_load          = nil
       @default_item_options = {}
+      @parent_attributes    = {}
     end
 
     def [](key)
